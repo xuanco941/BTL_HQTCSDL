@@ -1,4 +1,4 @@
 <?php
 
-echo'HI';
+echo'This is home page';
 ?>
