@@ -101,6 +101,19 @@ select @chiphi = sum(TienLai) from HoaDon where Ngay = @ngay;
 return @chiphi;
 end
 GO
+--4 Trả về công viêc của tài khoản
+create function login_phan_quyen (@taikhoan varchar(50))
+returns int
+as begin
+declare @IDCongViec int;
+declare @IDNV int;
+set @IDCongViec = 0;
+select @IDNV = IDNV from TaiKhoan where TenTaiKhoan = @taikhoan;
+select @IDCongViec = IDCongViec from NHANVIEN where IDNV = @IDNV;
+return @IDCongViec
+end
+
+GO
 -- TRIGGER
 /*
 --1 Dùng để thêm tài khoản đăng nhập vào website nhà hàng , mỗi khi thêm hoặc cập nhật 1 nhân viên
