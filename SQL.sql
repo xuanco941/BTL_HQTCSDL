@@ -32,7 +32,7 @@ CREATE TABLE NHANVIEN
 (IDNV int identity(1,1) primary key, 
 IDCongViec int,
 TenNV nvarchar(50) not null , 
-SDT char(10), 
+SDT varchar(50), 
 DiaChi nvarchar(50),  
 Luong float,
 IDNhaHang int,
@@ -73,7 +73,6 @@ IDNV int,
 foreign key (IDNV) references NhanVien(IDNV))
 
 GO
-
 --FUNCTION
 --1 Tính tổng chi phí bỏ ra dựa trên các ngày của hóa đơn
 Create Function chiPhiBoRa (@ngay date)
@@ -107,24 +106,21 @@ GO
 --1 Dùng để thêm tài khoản đăng nhập vào website nhà hàng , mỗi khi thêm hoặc cập nhật 1 nhân viên
 mặc định tài khoản sẽ là số điện thoại của nhân viên đó và mật khẩu là 123
 */
-CREATE TRIGGER addNV
-on NHANVIEN for INSERT , UPDATE 
-AS
-if(exists(select SDT from inserted) and (select SDT from inserted) != '')
+Create TRIGGER addNV
+on NHANVIEN for INSERT
+AS begin
+if((exists(select SDT from inserted)) and ((select SDT from inserted) != ''))
 begin
-declare @SDT char(10);
+declare @SDT varchar(50);
 select @SDT = SDT from inserted;
-if(not exists (select * from NHANVIEN where SDT = @SDT))
-begin
-Declare @taikhoan varchar(50);
-select @taikhoan = SDT from inserted;
-Declare @IDNV int ;
-select @IDNV = IDNV from inserted;
-INSERT INTO TaiKhoan (TenTaiKhoan,MatKhau,IDNV) values (@taikhoan,'123',@IDNV);
+	Declare @taikhoan varchar(50);
+	select @taikhoan = @SDT;
+	Declare @IDNV int ;
+	select @IDNV = IDNV from inserted;
+	INSERT INTO TaiKhoan (TenTaiKhoan,MatKhau,IDNV) values (@taikhoan,'123',@IDNV);
 end
-else
-rollback tran;
 end
+
 
 GO
 
@@ -152,7 +148,7 @@ and (select SoDu from MonAn where IDMonAn = @idMonAn) >= @soLuong)
 begin
 UPDATE HoaDon 
 set SoTienPhaiTra = (@soLuong * (select GiaBan from MonAn where IDMonAn = @idMonAn)) 
-- (@soLuong * (select GiaBan from MonAn where IDMonAn = @idMonAn) * (select GiamGia from MonAn where IDMonAn =@idMonAn)) 
+- (@soLuong * (select GiaBan from MonAn where IDMonAn = @idMonAn) * ((select GiamGia from MonAn where IDMonAn =@idMonAn) / 100)) 
 where IDHoaDon = @idHoaDon;
 UPDATE HoaDon
 set GiaGoc = @soLuong * (select ChiPhiSanXuat from MonAn where IDMonAn = @idMonAn) where IDHoaDon = @idHoaDon;
@@ -166,6 +162,7 @@ values(dbo.chiPhiBoRa(@ngay),dbo.tienThuDuoc(@ngay),dbo.tienLai(@ngay),@idHoaDon
 end
 else
 rollback tran;
+
 
 GO
 --PROCEDURE
@@ -280,7 +277,7 @@ GO
 sp_addrole 'quyen_nhanvien'
 GO
 grant select on MonAn to quyen_nhanvien
-grant select on HoaDon to quyen_nhanvien
+grant select , insert on HoaDon to quyen_nhanvien
 GO
 --tạo role quyen_quanly
 --quyen_quanly co them xem va sua bang MonAn , NhanVien , HoaDon , CongViec
@@ -289,7 +286,11 @@ GO
 grant select , update , insert , delete on MonAn to quyen_quanly
 grant select , update , insert , delete on NHANVIEN to quyen_quanly
 grant select , update , insert , delete on CongViec to quyen_quanly
-grant select on HoaDon to quyen_quanly
+grant select , insert on HoaDon to quyen_quanly
+GO
+
+-- cho tat ca duoc su dung cac proc , function
+GRANT EXEC TO PUBLIC;
 GO
 --thêm user vào role
 sp_addrolemember 'quyen_nhanvien','nhanvien'
@@ -298,8 +299,19 @@ sp_addrolemember 'quyen_quanly','quanly'
 GO
 
 
+--Them du lieu
+insert into CongViec values ('Leader',300000),('Bồi Bàn',150000),('Tạp Vụ',180000),('Thu Ngân',200000),('Đầu bếp',250000);
+GO
+insert into NhaHang values ('Rừng Và Biển' , 'Hà Nội');
+GO
+insert into MonAn values ('Gà Nướng',100,100000 ,150000 , 5),('Set Lẩu',100,300000 ,500000 , 0),('Bò Xào',100,90000 ,130000 , 10);
+GO
+exec dbo.orderMon 1,2
+GO
+exec dbo.themNhanVien 1,'Do Van Xuan','038853006','Ha Noi',1
+
+
 /*
-TEST
 select * from NHANVIEN
 select * from CongViec
 select * from TaiKhoan
@@ -307,18 +319,4 @@ select * from MonAn
 select * from NhaHang
 select * from HoaDon
 select * from LichSuBan
-
-
-insert into CongViec values ('Leader',300000)
-
-insert into NhaHang values ('Rung va Bien' , 'Ha Noi')
-
-insert into NHANVIEN 
-values(1,'Do Van Xuan','0388530006','Ha Noi', 9000000 , 1)
-
-insert into TaiKhoan values ('admin','xuan',1)
-
-insert into MonAn values ('Vit',10,20 ,30 , 10)
-
-exec dbo.orderMon 1,2
 */
