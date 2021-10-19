@@ -101,7 +101,7 @@ select @chiphi = sum(TienLai) from HoaDon where Ngay = @ngay;
 return @chiphi;
 end
 GO
---4 Trả về công viêc của tài khoản
+--4 Trả về công viêc của tài khoản nếu không phải là leader thì sẽ trả về 0 , là leader sẽ trả về 1
 create function login_phan_quyen (@taikhoan varchar(50))
 returns int
 as begin

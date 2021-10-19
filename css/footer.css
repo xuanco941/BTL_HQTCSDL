@@ -1,0 +1,23 @@
+.footer{
+    height: 100px;
+    width: 80vw;
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    margin-top: 80px;
+}
+.footer h1{
+    font-size: 35px;
+    color: royalblue;
+}
+.btn-logout{
+    height: 40px;
+    width: 100px;
+    background-color: royalblue;
+    color: white;
+}
+.btn-logout:hover{
+    cursor: pointer;
+}

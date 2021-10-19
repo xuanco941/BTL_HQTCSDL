@@ -1,0 +1,36 @@
+.header{
+    background-color:royalblue;
+    height: 100px;
+    width: 80vw;
+    margin:0 auto;
+    margin-top: 50px;
+    font-size: 25px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+body{
+    margin: 0;
+}
+.itemHead{
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 16%;
+    margin-right: 40px;
+    text-decoration: none;
+    color: rgba(255, 255, 255, .7);
+}
+.itemHead:hover{
+    color: white;
+}
+.container{
+    width: 80vw;
+    height: 500px;
+    background-color:tan;
+    margin: 0 auto;
+}
