@@ -14,9 +14,8 @@
 
     <body>
         <div class="head">
-            <h1>Đăng nhập thành viên</h2>
-            <button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Đăng
-                nhập</button>
+            <h1>Đăng nhập thành viên nhà hàng</h2>
+            <button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Tôi là thành viên</button>
         </div>
 
         <div id="id01" class="modal">
@@ -30,10 +29,10 @@
 
                 <div class="container">
                     <label for="uname"><b>Tài khoản</b></label>
-                    <input type="text" placeholder="Enter Username" name="username" required>
+                    <input type="text" placeholder="Tài khoản" name="username" required>
 
                     <label for="psw"><b>Mật khẩu</b></label>
-                    <input type="password" placeholder="Enter Password" name="password" required>
+                    <input type="password" placeholder="Mật khẩu" name="password" required>
 
                     <button type="submit">Đăng nhập</button>
                     <label>
@@ -43,7 +42,7 @@
 
                 <div class="container" style="background-color:#f1f1f1">
                     <button type="button" onclick="document.getElementById('id01').style.display='none'"
-                        class="cancelbtn">Cancel</button>
+                        class="cancelbtn">Đóng</button>
                 </div>
             </form>
         </div>
