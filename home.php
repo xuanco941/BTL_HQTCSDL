@@ -24,6 +24,7 @@
 
     <?php
     include './partials/footer.php';
+    include './process/checkNV.php';
     ?>
 </body>
 

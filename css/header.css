@@ -23,7 +23,7 @@ body{
     width: 16%;
     margin-right: 40px;
     text-decoration: none;
-    color: rgba(255, 255, 255, .7);
+    color: rgba(255, 255, 255, 0.88);
 }
 .itemHead:hover{
     color: white;
@@ -34,3 +34,8 @@ body{
     background-color:tan;
     margin: 0 auto;
 }
+a.disabled {
+    pointer-events: none;
+    cursor: default;
+    color: rgba(255, 255, 255, 0.4);
+  }
