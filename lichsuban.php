@@ -20,7 +20,38 @@
    <?php
    include './partials/header.php';
    ?>
-    
+    <div class="container">
+        <table class="table">
+            <tr>
+                <th>ID</th>
+                <th>Chi phí bỏ ra</th>
+                <th>Số tiền thu được</th>
+                <th>Số tiền lãi</th>
+                <th>ID hóa đơn thanh toán cuối cùng</th>
+                <th>Ngày</th>
+            </tr>
+            <?php
+            include './process/ConnectDB.php';
+                $conn = connectDB();
+                $sql = "select * from LichSuBan";
+                $params = array();
+                $options =  array( "Scrollable" => SQLSRV_CURSOR_KEYSET );
+                $result = sqlsrv_query( $conn, $sql , $params , $options );
+                while($row = sqlsrv_fetch_array($result,SQLSRV_FETCH_ASSOC)){
+                    $date = $row['Ngay']->format('d-m-Y');
+                    echo '<tr>
+                    <td>'.$row['IDLichSuBan'].'</td>
+                    <td>'.$row['ChiPhiBoRa'].'</td>
+                    <td>'.$row['SoTienThuDuoc'].'</td>
+                    <td>'.$row['SoTienLai'].'</td>
+                    <td>'.$row['IDHoaDonCuoi'].'</td>
+                    <td>'.$date.'</td>
+                </tr>';
+                }
+                sqlsrv_close($conn);
+            ?>
+        </table>
+    </div>
 
     <?php
     include './partials/footer.php';

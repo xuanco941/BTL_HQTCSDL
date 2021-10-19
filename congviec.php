@@ -20,25 +20,36 @@
     <?php
    include './partials/header.php';
    ?>
-    <div class="container">
-        <table>
+ <div class="container">
+        <table class="table">
             <tr>
-                <th>Person 1</th>
-                <th>Person 2</th>
-                <th>Person 3</th>
+                <th>ID Công việc</th>
+                <th>Tên công việc</th>
+                <th>Tiền công theo ngày</th>
             </tr>
-            <tr>
-                <td>Emil</td>
-                <td>Tobias</td>
-                <td>Linus</td>
-            </tr>
-            <tr>
-                <td>16</td>
-                <td>14</td>
-                <td>10</td>
-            </tr>
+            <?php
+                include './process/ConnectDB.php';
+                $conn = connectDB();
+                $sql = "select * from CongViec";
+                $params = array();
+                $options =  array( "Scrollable" => SQLSRV_CURSOR_KEYSET );
+                $result = sqlsrv_query( $conn, $sql , $params , $options );
+                while($row = sqlsrv_fetch_array($result,SQLSRV_FETCH_ASSOC)){
+                    echo '<tr>
+                    <td>'.$row['IDCongViec'].'</td>
+                    <td>'.$row['TenCongViec'].'</td>
+                    <td>'.$row['TienCongTheoNgay'].'</td>
+                </tr>';
+                }
+                sqlsrv_close($conn);
+            ?>
         </table>
     </div>
+     <div class="control">
+         
+             <button class="btn-click btn-insert">Thêm công việc</button>
+         
+     </div>           
 
     <?php
     include './partials/footer.php';

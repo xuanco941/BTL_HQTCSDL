@@ -14,6 +14,7 @@ include './process/ConnectDB.php';
                         echo "<script>const tagA = Array.from(document.querySelectorAll('.itemHead2'));
                         tagA.forEach((e) => {
                         e.classList.add('disabled');
+                        e.style.display = 'none';
                         })</script>";
                     }
                 }

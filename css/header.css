@@ -31,11 +31,40 @@ body{
 .container{
     width: 80vw;
     height: 500px;
-    background-color:tan;
+    background-color:wheat;
     margin: 0 auto;
 }
 a.disabled {
     pointer-events: none;
     cursor: default;
     color: rgba(255, 255, 255, 0.4);
-  }
+}
+.table{
+    width: 100%;
+    text-align: center;
+}
+.control {
+    margin: 0 auto;
+    margin-top: 20px;
+    display: flex;
+}
+.btn-click{
+    margin: 0 auto;
+    width: 120px;
+    height: 50px;
+    margin-top: 10px;
+    color: white;
+}
+.btn-click:hover{
+    cursor: pointer;
+    font-size: 15px;
+}
+.btn-insert{
+    background-color: forestgreen;
+}
+.btn-update{
+    background-color:darkorange;
+}
+.btn-delete{
+    background-color: brown;
+}
