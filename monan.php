@@ -53,14 +53,20 @@
             ?>
         </table>
     </div>
-     <div class="control">
-             <button class="btn-click btn-insert">Thêm món ăn</button>
-         
-             <button class="btn-click btn-update">Sửa món ăn</button>
-         
-             <button class="btn-click btn-delete">Xóa món ăn</button>
-     </div>           
+    <div class="control">
+        <button class="btn-click btn-insert">Thêm món ăn</button>
 
+        <button class="btn-click btn-update">Sửa món ăn</button>
+
+        <button class="btn-click btn-delete">Xóa món ăn</button>
+    </div>
+    <form class="formOrder" action="./process/orderMon.php" method="POST">
+        ID Món
+        <input type="text" name="idmon" require="true">
+        Số lượng
+        <input type="number" name="soluong" value="0" require="true">
+        <button type="submit" class="btn-click btn-insert">Xác nhận</button>
+    </form>
 
     <?php
     include './partials/footer.php';

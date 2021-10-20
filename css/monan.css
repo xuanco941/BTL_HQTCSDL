@@ -1,0 +1,18 @@
+.formOrder{
+    height: 300px;
+    width: 300px;
+    margin: 0 auto;
+    border: 2px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    background-color: darkorange;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: 40px;
+}
+.formOrder>input{
+    height: 30px;    
+    width: 95%;
+    
+}

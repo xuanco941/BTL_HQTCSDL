@@ -19,7 +19,7 @@ include './ConnectDB.php';
         }
         else{
             $_SESSION['login'] = $username;
-            header('Location: ../home.php');
+            header('Location: ../monan.php');
         }
         sqlsrv_close($conn);
     }

@@ -1,7 +1,4 @@
 <header class="header">
-    <a href="./home.php" class="itemHead">
-        <div class="boxhead">Order</div>
-    </a>
     <a href="./monan.php" class="itemHead">
         <div class="boxhead">Món Ăn</div>
     </a>
