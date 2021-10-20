@@ -67,7 +67,7 @@
         <input type="number" name="soluong" value="0" require="true">
         <button type="submit" class="btn-click btn-insert">Xác nhận</button>
     </form>
-
+     
     <?php
     include './partials/footer.php';
     ?>
