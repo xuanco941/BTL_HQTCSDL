@@ -3,10 +3,10 @@ include './ConnectDB.php';
 if (isset($_POST['tenmonan']) && isset($_POST['chiphi']) && isset($_POST['sodu']) && isset($_POST['giaban']) && isset($_POST['giamgia'])){
 
     $tenmonan = $_POST['tenmonan'];
-    $sodu = $_POST['sodu'];
-    $chiphi = $_POST['chiphi'];
-    $giaban = $_POST['giaban'];
-    $giamgia = $_POST['giamgia'];
+    $sodu = (int)$_POST['sodu'];
+    $chiphi = (double)$_POST['chiphi'];
+    $giaban =  (double)$_POST['giaban'];
+    $giamgia =  (double)$_POST['giamgia'];
 $conn = connectDB();
 $sql = "exec dbo.themMonAn $tenmonan , $sodu , $chiphi , $giaban , $giamgia";
 $result = sqlsrv_prepare($conn,$sql);

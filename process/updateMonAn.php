@@ -14,7 +14,7 @@ if(sqlsrv_execute($result)){
     header('Location: ../monan.php');
 }
 else{
-    echo '<h2>Loi cap nhat duoc mon an</h2>';
+    echo '<h2>Loi khong cap nhat duoc mon an</h2>';
 }
 }
 else{
