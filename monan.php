@@ -61,11 +61,12 @@ if (!isset($_SESSION['login'])) {
 
         <button class="btn-click btn-delete" id="delete">Xóa món ăn</button>
     </div>
-    <form class="formOrder" action="./process/orderMon.php" method="POST">
+    <form class="formOrder" style="text-align: center;" action="./process/orderMon.php" method="POST">
+    <H2 style="width: 100%; margin: 0 auto;">Order</H2>
         ID Món
-        <input type="text" name="idmon" require="true">
+        <input type="number" name="idmon" require="true">
         Số lượng
-        <input type="number" name="soluong" value="0" require="true">
+        <input type="number" name="soluong" require="true">
         <button type="submit" class="btn-click btn-insert">Xác nhận</button>
     </form>
 

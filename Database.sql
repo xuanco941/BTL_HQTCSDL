@@ -101,7 +101,7 @@ select @chiphi = sum(TienLai) from HoaDon where Ngay = @ngay;
 return @chiphi;
 end
 GO
---4 Trả về công viêc của tài khoản nếu không phải là leader thì sẽ trả về 0 , là leader sẽ trả về 1
+--4 Trả về công viêc của tài khoản
 create function login_phan_quyen (@taikhoan varchar(50))
 returns int
 as begin
@@ -313,15 +313,25 @@ GO
 
 
 --Them du lieu
-insert into CongViec values ('Leader',300000),('Bồi Bàn',150000),('Tạp Vụ',180000),('Thu Ngân',200000),('Đầu bếp',250000);
+insert into CongViec values ('Leader',300000),(N'Boi Ban',150000),(N'Tap Vu',180000),(N'Thu Ngan',200000),(N'Dau bep',250000);
 GO
-insert into NhaHang values ('Rừng Và Biển' , 'Hà Nội');
+insert into NhaHang values ('Rung Va Bien' , 'Ha Noi');
 GO
-insert into MonAn values ('Gà Nướng',100,100000 ,150000 , 5),('Set Lẩu',100,300000 ,500000 , 0),('Bò Xào',100,90000 ,130000 , 10);
+insert into MonAn values ('Ga Nuong',100,100000 ,150000 , 5),(N'Set Lau',100,300000 ,500000 , 0),(N'Bo Xao',100,90000 ,130000 , 10),(N'Set Nuong',30,200000,210000,5);
 GO
 exec dbo.orderMon 1,2
 GO
-exec dbo.themNhanVien 1,'Do Van Xuan','038853006','Ha Noi',1
+exec dbo.themNhanVien 1,N'Do Van Xuan','12345',N'Ha Noi',1;
+GO
+exec dbo.themNhanVien 2,N'Nguyen Hong Son','1234',N'Ha Noi',1;
+GO
+exec dbo.themNhanVien 3,N'Tran Thi Hong Ngoc','123',N'Ha Nam',1;
+GO
+exec dbo.themNhanVien 4,N'Tran Thi Hong Huong','12',N'Ha Tinh',1;
+
+
+
+
 
 
 /*

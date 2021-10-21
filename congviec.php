@@ -48,9 +48,17 @@
     </div>
      <div class="control">
          
-             <button class="btn-click btn-insert">Thêm công việc</button>
+             <button class="btn-click btn-insert" id="insert">Thêm công việc</button>
          
-     </div>           
+     </div>      
+     <div class="modal" id="modal">
+        <form class="form-post" id="form" action="./process/themCongViec.php" method="post">
+            <input type="text" placeholder="Ten cong viec" name="tencongviec">
+            <input type="number" placeholder="Tien cong moi ngay" name="tiencong">
+
+            <button type="submit" class="btn-click btn-insert">Them cong viec</button>
+        </form>
+    </div>     
 
     <?php
     include './partials/footer.php';

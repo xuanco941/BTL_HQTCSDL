@@ -9,7 +9,7 @@ if(sqlsrv_execute($result)){
     header('Location: ../nhanvien.php');
 }
 else{
-    echo '<h2>Khong xoa duoc nhan vien nay </h2>';
+    echo '<h2>Khong xoa duoc nhan vien nay , day la khoa ngoai cua 1 bang khac</h2>';
 }
 }
 else{

@@ -7,7 +7,7 @@ if (isset($_POST['idcongviec']) && isset($_POST['tennhanvien']) && isset($_POST[
     $sdt = $_POST['sdt'];
     $diachi = $_POST['diachi'];
 $conn = connectDB();
-$sql = "exec dbo.themNhanVien $idcongviec , $tennhanvien , $sdt , $diachi";
+$sql = "exec dbo.themNhanVien $idcongviec , $tennhanvien , $sdt , $diachi , 1";
 $result = sqlsrv_prepare($conn,$sql);
 if(sqlsrv_execute($result)){
     header('Location: ../nhanvien.php');
