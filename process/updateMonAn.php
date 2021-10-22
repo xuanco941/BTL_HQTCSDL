@@ -8,7 +8,7 @@ if (isset($_POST['idmonan'])){
     $giaban = $_POST['giaban'];
     $giamgia = $_POST['giamgia'];
 $conn = connectDB();
-$sql = "update MonAn set TenMonAn = $tenmonan , SoDu = $sodu , ChiPhiSanXuat = $chiphi , GiaBan = $giaban , GiamGia = $giamgia where IDMonAn = $idmonan ";
+$sql = "update MonAn set TenMonAn = '$tenmonan' , SoDu = $sodu , ChiPhiSanXuat = $chiphi , GiaBan = $giaban , GiamGia = $giamgia where IDMonAn = $idmonan ";
 $result = sqlsrv_prepare($conn,$sql);
 if(sqlsrv_execute($result)){
     header('Location: ../monan.php');

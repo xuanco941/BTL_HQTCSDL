@@ -9,7 +9,7 @@ include './ConnectDB.php';
         if(!$conn){
             die('khong the ket noi toi db');
         }
-        $sql = "select * from TaiKhoan where tentaikhoan = $username and matkhau = $password";
+        $sql = "select * from TaiKhoan where tentaikhoan = '$username' and matkhau = '$password'";
         $params = array();
         $options =  array( "Scrollable" => SQLSRV_CURSOR_KEYSET );
         $result = sqlsrv_query( $conn, $sql , $params , $options );

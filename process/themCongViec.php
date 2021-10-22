@@ -5,7 +5,7 @@ if (isset($_POST['tiencong']) && isset($_POST['tencongviec'])){
     $tencongviec = $_POST['tencongviec'];
     $tiencong = $_POST['tiencong'];
 $conn = connectDB();
-$sql = "exec dbo.themCongViec $tencongviec , $tiencong ";
+$sql = "exec dbo.themCongViec '$tencongviec' , $tiencong ";
 $result = sqlsrv_prepare($conn,$sql);
 if(sqlsrv_execute($result)){
     header('Location: ../congviec.php');

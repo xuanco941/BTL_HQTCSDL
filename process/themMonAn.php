@@ -8,7 +8,7 @@ if (isset($_POST['tenmonan']) && isset($_POST['chiphi']) && isset($_POST['sodu']
     $giaban =  (double)$_POST['giaban'];
     $giamgia =  (double)$_POST['giamgia'];
 $conn = connectDB();
-$sql = "exec dbo.themMonAn $tenmonan , $sodu , $chiphi , $giaban , $giamgia";
+$sql = "exec dbo.themMonAn '$tenmonan' , $sodu , $chiphi , $giaban , $giamgia";
 $result = sqlsrv_prepare($conn,$sql);
 if(sqlsrv_execute($result)){
     header('Location: ../monan.php');
